@@ -38,7 +38,9 @@ public class userSet {
 		Set<String> intersectionXY = new HashSet<String>(myUserSet);
 		intersectionXY.retainAll(other.getMyUserSet());
 
-		return (double) intersectionXY.size() / (double) unionXY.size();
+		double similarity = (double) intersectionXY.size()
+				/ (double) unionXY.size();
+		return 1.0 - similarity;
 
 	}
 }
