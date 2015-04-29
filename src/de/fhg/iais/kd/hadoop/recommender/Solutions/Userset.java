@@ -5,7 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class userSet {
+public class Userset {
 
 	private List<String> myUserSet;
 
@@ -22,7 +22,7 @@ public class userSet {
 		myUserSet.add(username);
 	}
 
-	public double distanceTo(userSet other)
+	public double distanceTo(Userset other)
 	// compute Jaccard-Distance to another userset
 	{
 		if (other == null || other.getMyUserSet().size() == 0) {
