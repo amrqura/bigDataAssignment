@@ -1,6 +1,7 @@
 package de.fhg.iais.kd.hadoop.recommender.Solutions;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -41,6 +42,12 @@ public class Userset {
 		double similarity = (double) intersectionXY.size()
 				/ (double) unionXY.size();
 		return 1.0 - similarity;
+
+	}
+
+	public Userset(String param) {
+
+		myUserSet = Arrays.asList(param.split(","));
 
 	}
 }
