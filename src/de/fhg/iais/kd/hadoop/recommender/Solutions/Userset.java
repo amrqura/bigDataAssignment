@@ -45,6 +45,7 @@ public class Userset {
 
 	}
 
+	// constructor
 	public Userset(String param) {
 
 		myUserSet = Arrays.asList(param.split(","));
