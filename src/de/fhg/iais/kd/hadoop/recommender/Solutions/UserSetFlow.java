@@ -48,6 +48,8 @@ public class UserSetFlow {
 		ProjectToFields projector = new ProjectToFields(targetFields);
 		// go for each record
 		pipe = new Each(pipe, targetFields, projector);
+		
+		// first computes the userset for each artname
 		// group the Tuple stream by the "artist_name" value
 		pipe = new GroupBy(pipe, new Fields("artist_name"));
 		// aggregate on user_id

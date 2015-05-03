@@ -76,10 +76,17 @@ public class UserSetMatrixAggregator extends
 
 		// set the the list of users
 		// result.add(context.userNames);
-		String resultString = "";
-		for (String tmpString : context.userNames) {
-			resultString = resultString + tmpString + ",";
+		StringBuilder resultString = new StringBuilder();
+		for (int i = 0; i < context.userNames.size(); i++) {
+			if (i == context.userNames.size() - 1) {
+				resultString.append(context.userNames.get(i));
+			} else {
+				resultString.append(context.userNames.get(i) + ",");
+			}
+
 		}
+
+		// remove the last comma
 
 		result.add(resultString);
 

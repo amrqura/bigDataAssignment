@@ -13,8 +13,10 @@ public class batchRecommender {
 		String workDir = "recommender_flowtest/";
 
 		// Flow utilMatrix = UserSetFlow.getUserSetFlow(infile, workDir);
-		Flow utilMatrix = UserSetMatrixFlow.getUserSetMatrixFlow(infile,
-				workDir);
+		// Flow utilMatrix = UserSetMatrixFlow.getUserSetMatrixFlow(infile,
+		// workDir);
+
+		Flow utilMatrix = UserSetCluster.getUserSetClusterFlow(infile, workDir);
 
 		utilMatrix.complete();
 
