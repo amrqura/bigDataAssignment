@@ -4,11 +4,12 @@ import de.fraunhofer.iais.kd.livlab.bda.clustermodel.ClusterModel;
 import de.fraunhofer.iais.kd.livlab.bda.clustermodel.ClusterModelFactory;
 
 public class UserSetClusterModel {
+	private final ClusterModel myClusterModel;
 
 	String findClosestCluster(Userset userset)
 	// Returns the clusterid of the cluster whos metroid is closest to the input
 	{
-		double resultDouble = 10.0;
+		double resultDouble = 1000.0;
 		String resultString = "";
 		ClusterModel computedClusterModel = ClusterModelFactory
 				.readFromCsvResource("/resources/centers_1000_iter_2_50.csv");
@@ -19,11 +20,19 @@ public class UserSetClusterModel {
 			Userset tmpUserSet = new Userset(userSetRepresenation);
 			if (userset.distanceTo(tmpUserSet) < resultDouble) {
 				resultDouble = userset.distanceTo(tmpUserSet);
-				resultString = userSetRepresenation;
+				resultString = tmpCluster;
 
 			}
 		}
 
 		return resultString;
+
 	}
+
+	public UserSetClusterModel(ClusterModel param) {
+		// TODO Auto-generated constructor stub
+		this.myClusterModel = param;
+
+	}
+
 }
