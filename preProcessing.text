@@ -1,0 +1,4 @@
+cat userid-timestamp-artid-artname-traid-traname.tsv |sed 's/\"//g'|sed "s/'//g" |sed "s/|//g">clean.tsv
+
+
+cat clean.tsv | sort -k2 >clean_sorted.tsv
