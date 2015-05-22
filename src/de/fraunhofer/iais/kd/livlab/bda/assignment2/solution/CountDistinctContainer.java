@@ -9,6 +9,7 @@ public class CountDistinctContainer {
 	private final CountDistinctSketch sketch = new CountDistinctSketch(
 			Integer.MIN_VALUE);
 
+	// sketch of userNames with listening events of specific artist name
 	public CountDistinctContainer(String ArtName) {
 		this.ArtName = ArtName;
 	}
