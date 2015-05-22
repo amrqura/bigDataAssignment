@@ -42,14 +42,16 @@ public class CountDistinctClusterModel {
 	 */
 	private CountDistinctSketch constructSketch(String metroID) {
 		int sketchSize = 2 * metroID.split(",").length / 3; // the sketch size
-															// should be less
-															// than the the real
-															// set
+		// should be less
+		// than the the real
+		// set
 
 		CountDistinctSketch sketch = new CountDistinctSketch(sketchSize);
 		String[] userSetArr = metroID.split(",");
 		for (int i = 0; i < userSetArr.length; i++) {
-			if (userSetArr[i].toLowerCase().trim().equals("1")) { // insert it
+			if (userSetArr[i].toLowerCase().trim().equals("1")) { // not sure
+																	// about
+																	// this
 				sketch.addUser(i + ""); // just to make sure that the hash value
 				// will have different values
 			}
