@@ -20,7 +20,7 @@ public class CountDistinctContainer {
 		sketch.addUser(username);
 		if (sketch.getEstimate() != oldEstimation) {
 			isIncreased = true;
-		}
+		} // test
 	}
 
 	public int getCount() {

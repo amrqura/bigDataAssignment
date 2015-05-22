@@ -14,7 +14,7 @@ public class CountDistinctSketch extends Sketch {
 	public CountDistinctSketch(BitSet sketch) {
 		super(sketch.length());
 		setSketch(sketch);
-	}
+	} // test
 
 	/**
 	 *
