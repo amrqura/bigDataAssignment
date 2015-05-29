@@ -1,11 +1,14 @@
 package de.fraunhofer.iais.kd.livlab.bda.assignment2.solution;
 
-// represent the art name and the listeners
 public class CountDistinctContainer {
 
 	private final String ArtName;
 
 	private boolean isIncreased = false;
+
+	public void setIncreased(boolean isIncreased) {
+		this.isIncreased = isIncreased;
+	}
 
 	private final CountDistinctSketch sketch = new CountDistinctSketch(10);
 

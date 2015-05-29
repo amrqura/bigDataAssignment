@@ -1,8 +1,6 @@
 package de.fraunhofer.iais.kd.livlab.bda.storm;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import backtype.storm.task.OutputCollector;
@@ -30,10 +28,9 @@ public class CountDistinctBolt extends BaseRichBolt {
 	private static final long serialVersionUID = 1L;
 	OutputCollector collector;
 	private CountDistinctDetecor detector;
-	List<CountDistinctContainer> container;
 	String currentArtistName = "";
 	CountDistinctContainer currentContainer;
-	static HashMap<String, CountDistinctContainer> artistUsers = new HashMap<String, CountDistinctContainer>();
+	HashMap<String, CountDistinctContainer> artistUsers = new HashMap<String, CountDistinctContainer>();
 
 	ClusterModel clusterModel = ClusterModelFactory
 			.readFromCsvResource(BdaConstants.CLUSTER_MODEL);
@@ -46,7 +43,6 @@ public class CountDistinctBolt extends BaseRichBolt {
 			OutputCollector collector) {
 		this.collector = collector;
 		detector = new CountDistinctDetecor();
-		container = new ArrayList<CountDistinctContainer>();
 
 	}
 
@@ -68,6 +64,19 @@ public class CountDistinctBolt extends BaseRichBolt {
 			System.out.println("ArtName:" + artname + " nofuser:"
 					+ container.getCount() + " closest_cluster"
 					+ distinctClusterModel.getClosest(container.getSketch()));
+
+			container.setIncreased(false);
+
+			// printing the keys
+			String resultStr = "";
+			for (String key : artistUsers.keySet()) {
+
+				CountDistinctContainer tmpContainer = artistUsers.get(key);
+				resultStr = resultStr + key + ", " + tmpContainer.getCount()
+						+ "      //";
+
+			}
+			// System.out.println(resultStr);
 
 		}
 

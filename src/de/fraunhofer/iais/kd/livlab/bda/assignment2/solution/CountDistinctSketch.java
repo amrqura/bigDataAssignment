@@ -30,7 +30,10 @@ public class CountDistinctSketch {
 
 	public void addUser(String username) {
 
-		int index = Math.abs(username.hashCode() % sketch.getSketchsize()); // make sure not negative
+		int index = Math.abs(username.hashCode() % sketch.getSketchsize()); // make
+		// sure
+		// not
+		// negative
 		sketch.getSketch().set(index);
 
 	}
@@ -43,10 +46,10 @@ public class CountDistinctSketch {
 	public int getEstimate() {
 		// -m*ln(US/m)
 
-		int m = sketch.getSketchsize();
-		int US = sketch.getSketchsize() - sketch.getSketch().cardinality();
-		double result = -1 * m * Math.log(US / m);
-		return (int) result;
+		double m = sketch.getSketchsize();
+		double US = sketch.getSketchsize() - sketch.getSketch().cardinality();
+		int result = (int) (-1 * m * Math.log(US / m));
+		return result;
 
 	}
 
