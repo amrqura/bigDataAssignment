@@ -4,16 +4,23 @@ import java.util.BitSet;
 
 import de.fraunhofer.iais.kd.livlab.bda.countdistinct.Sketch;
 
-public class CountDistinctSketch extends Sketch {
+// compact synopsis for set of distinct entities
+public class CountDistinctSketch {
+
+	Sketch sketch;
+
+	public CountDistinctSketch() {
+
+	}
 
 	public CountDistinctSketch(int sketchsize) {
-		super(sketchsize);
+		sketch = new Sketch(sketchsize);
 		// TODO Auto-generated constructor stub
 	}
 
 	public CountDistinctSketch(BitSet sketch) {
-		super(sketch.length());
-		setSketch(sketch);
+		this.sketch = new Sketch(sketch.length());
+		this.sketch.setSketch(sketch);
 	} // test
 
 	/**
@@ -23,8 +30,8 @@ public class CountDistinctSketch extends Sketch {
 
 	public void addUser(String username) {
 
-		int index = username.hashCode() % getSketchsize();
-		getSketch().set(index);
+		int index = Math.abs(username.hashCode() % sketch.getSketchsize()); // make sure not negative
+		sketch.getSketch().set(index);
 
 	}
 
@@ -36,8 +43,8 @@ public class CountDistinctSketch extends Sketch {
 	public int getEstimate() {
 		// -m*ln(US/m)
 
-		int m = getSketch().cardinality();
-		int US = getSketchsize() - m;
+		int m = sketch.getSketchsize();
+		int US = sketch.getSketchsize() - sketch.getSketch().cardinality();
 		double result = -1 * m * Math.log(US / m);
 		return (int) result;
 
@@ -52,14 +59,16 @@ public class CountDistinctSketch extends Sketch {
 	 */
 	public double distanceTo(CountDistinctSketch other) {
 
-		BitSet unionSet = new BitSet(
-				other.getSketchsize() > getSketchsize() ? other.getSketchsize()
-						: getSketchsize());
-		unionSet.set(0, unionSet.length() - 1, false);
-		unionSet.or(getSketch());
-		unionSet.or(other.getSketch());
+		/*
+		 * BitSet unionSet = new BitSet( other.getSketchsize() > getSketchsize()
+		 * ? other.getSketchsize() : getSketchsize()); unionSet.set(0,
+		 * unionSet.length() - 1, false); unionSet.or(getSketch());
+		 * unionSet.or(other.getSketch()); CountDistinctSketch
+		 * unionDistinctSketch = new CountDistinctSketch( unionSet);
+		 */
 		CountDistinctSketch unionDistinctSketch = new CountDistinctSketch(
-				unionSet);
+				sketch.copy().getSketch());
+		unionDistinctSketch.sketch.orSketch(other.sketch);
 
 		double similarity = getEstimate() + other.getEstimate()
 				- unionDistinctSketch.getEstimate();

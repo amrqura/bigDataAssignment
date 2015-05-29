@@ -1,13 +1,13 @@
 package de.fraunhofer.iais.kd.livlab.bda.assignment2.solution;
 
+// represent the art name and the listeners
 public class CountDistinctContainer {
 
 	private final String ArtName;
 
 	private boolean isIncreased = false;
 
-	private final CountDistinctSketch sketch = new CountDistinctSketch(
-			Integer.MIN_VALUE);
+	private final CountDistinctSketch sketch = new CountDistinctSketch(10);
 
 	// sketch of userNames with listening events of specific artist name
 	public CountDistinctContainer(String ArtName) {
