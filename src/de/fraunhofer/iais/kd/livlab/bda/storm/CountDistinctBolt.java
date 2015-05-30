@@ -30,7 +30,7 @@ public class CountDistinctBolt extends BaseRichBolt {
 	private CountDistinctDetecor detector;
 	String currentArtistName = "";
 	CountDistinctContainer currentContainer;
-	HashMap<String, CountDistinctContainer> artistUsers = new HashMap<String, CountDistinctContainer>();
+	static HashMap<String, CountDistinctContainer> artistUsers = new HashMap<String, CountDistinctContainer>();
 
 	ClusterModel clusterModel = ClusterModelFactory
 			.readFromCsvResource(BdaConstants.CLUSTER_MODEL);
@@ -87,6 +87,7 @@ public class CountDistinctBolt extends BaseRichBolt {
 			// result[1]);
 		}
 
+		// collector.emit(tuple(word, count));
 		collector.ack(tuple);
 	}
 
