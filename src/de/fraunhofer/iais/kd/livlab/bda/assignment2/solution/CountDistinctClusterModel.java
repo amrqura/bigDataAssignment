@@ -8,6 +8,7 @@ public class CountDistinctClusterModel implements Serializable {
 
 	private static ClusterModel clusterModel = new ClusterModel();
 
+	// constructor
 	public CountDistinctClusterModel(ClusterModel clusertModel) {
 		// TODO Auto-generated constructor stub
 		this.clusterModel = clusertModel;

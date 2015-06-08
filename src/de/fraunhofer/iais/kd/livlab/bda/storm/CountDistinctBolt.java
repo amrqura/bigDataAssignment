@@ -22,9 +22,6 @@ import de.fraunhofer.iais.kd.livlab.bda.countdistinct.detector.CountDistinctDete
  */
 public class CountDistinctBolt extends BaseRichBolt {
 
-	/**
-	 *
-	 */
 	private static final long serialVersionUID = 1L;
 	OutputCollector collector;
 	private CountDistinctDetecor detector;

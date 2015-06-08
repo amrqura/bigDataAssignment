@@ -17,6 +17,7 @@ public class CountDistinctContainer {
 		this.ArtName = ArtName;
 	}
 
+	// add user
 	public void addUser(String username) {
 		isIncreased = false;
 		int oldEstimation = sketch.getEstimate();

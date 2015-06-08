@@ -18,6 +18,7 @@ public class CountDistinctSketch {
 		// TODO Auto-generated constructor stub
 	}
 
+	// constructor with bitSet
 	public CountDistinctSketch(BitSet sketch) {
 		this.sketch = new Sketch(sketch.length());
 		this.sketch.setSketch(sketch);
