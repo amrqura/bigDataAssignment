@@ -57,15 +57,17 @@ public class CountDistinctBolt extends BaseRichBolt {
 		if (container == null) {
 			// new artist
 			container = new CountDistinctContainer(artname);
-			artistUsers.put(artname, container);
+			// artistUsers.put(artname, container);
 		}
 		container.addUser(userid);
+		artistUsers.put(artname, container);
+
 		if (container.isIncreased()) {
 			System.out.println("ArtName:" + artname + " nofuser:"
 					+ container.getCount() + " closest_cluster"
 					+ distinctClusterModel.getClosest(container.getSketch()));
 
-			container.setIncreased(false);
+			// container.setIncreased(false);
 
 			// printing the keys
 			String resultStr = "";

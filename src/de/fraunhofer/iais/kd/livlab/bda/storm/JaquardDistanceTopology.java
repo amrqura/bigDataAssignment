@@ -22,7 +22,7 @@ public class JaquardDistanceTopology {
 			.getLogger(JaquardDistanceTopology.class);
 
 	public static void main(String[] args) throws InterruptedException,
-			AlreadyAliveException, InvalidTopologyException, IOException {
+	AlreadyAliveException, InvalidTopologyException, IOException {
 
 		Config conf = new Config();
 		conf.setDebug(false);
@@ -34,8 +34,14 @@ public class JaquardDistanceTopology {
 		builder.setSpout("spout", new ReadRecordsSpout(), 1);
 		builder.setBolt("splitBolt", new SplitBolt(), 1).shuffleGrouping(
 				"spout");
+		// builder.setBolt("countDistinctBolt", new CountDistinctBolt(),
+		// 3).fieldsGrouping("splitBolt", new Fields("artname")); //
+
 		builder.setBolt("countDistinctBolt", new CountDistinctBolt(), 3)
-				.shuffleGrouping("splitBolt"); //
+		.fieldsGrouping("splitBolt",
+						new backtype.storm.tuple.Fields("artname"));
+
+		// .fieldsGrouping("splitBolt", new Fields("artname"));
 
 		if (args != null && args.length == 3) {
 

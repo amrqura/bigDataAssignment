@@ -25,7 +25,7 @@ public class ReadRecordsSpout extends BaseRichSpout {
 
 		File inFile = new File((String) conf.get("inputfile"));
 		try {
-			in = (new BufferedReader(new FileReader(inFile)));
+			in = new BufferedReader(new FileReader(inFile));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -59,10 +59,13 @@ public class ReadRecordsSpout extends BaseRichSpout {
 
 	@Override
 	public void ack(Object id) {
+		System.out.println("Ack");
+
 	}
 
 	@Override
 	public void fail(Object id) {
+		System.out.println("Fail");
 	}
 
 	@Override
