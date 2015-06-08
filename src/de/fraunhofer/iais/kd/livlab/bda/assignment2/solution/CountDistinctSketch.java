@@ -48,6 +48,11 @@ public class CountDistinctSketch {
 
 		double m = sketch.getSketchsize();
 		double US = sketch.getSketchsize() - sketch.getSketch().cardinality();
+
+		if (m == 0 || US == 0) {
+			return 0;
+		}
+
 		int result = (int) (-1 * m * Math.log(US / m));
 		return result;
 

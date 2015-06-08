@@ -6,7 +6,7 @@ import de.fraunhofer.iais.kd.livlab.bda.clustermodel.ClusterModel;
 
 public class CountDistinctClusterModel implements Serializable {
 
-	ClusterModel clusterModel = new ClusterModel();
+	private static ClusterModel clusterModel = new ClusterModel();
 
 	public CountDistinctClusterModel(ClusterModel clusertModel) {
 		// TODO Auto-generated constructor stub
@@ -56,7 +56,9 @@ public class CountDistinctClusterModel implements Serializable {
 			if (userSetArr[i].toLowerCase().trim().equals("1")) { // not sure
 				// about
 				// this
-				sketch.addUser(i + ""); // just to make sure that the hash value
+				int k = i + 1;
+				sketch.addUser("user_" + k); // just to make sure that the hash
+				// value
 				// will have different values
 			}
 		}
